@@ -14,8 +14,8 @@
     </head>
     <body class="bg-teal-100">
         <nav class="flex gap-3 bg-teal-500 p-3 items-center" aria-label="Tabs">
-            <a href="{{ url('home') }}" class="text-white text-xl shrink-0 rounded-lg p-2 font-medium hover:bg-teal-100 hover:text-gray-800 {{ app.current_route == 'home' ? 'underline' : '' }}">Accueil</a>
-            <a href="{{ url('recipe.index') }}" class="shrink-0 rounded-lg p-2 font-small text-gray-200 hover:bg-teal-100 hover:text-gray-800 {{ app.current_route starts with 'recipe.' ? 'underline' : '' }}">Recettes</a>
+            <a href="{{ path('home') }}" class="text-white text-xl shrink-0 rounded-lg p-2 font-medium hover:bg-teal-100 hover:text-gray-800 {{ app.current_route == 'home' ? 'underline' : '' }}">Accueil</a>
+            <a href="{{ path('recipe.index') }}" class="shrink-0 rounded-lg p-2 font-small text-gray-200 hover:bg-teal-100 hover:text-gray-800 {{ app.current_route starts with 'recipe.' ? 'underline' : '' }}">Recettes</a>
         </nav>
         <div class="m-8">
             {% block body %}{% endblock %}
