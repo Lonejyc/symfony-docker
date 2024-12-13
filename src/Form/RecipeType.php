@@ -4,9 +4,12 @@ namespace App\Form;
 
 use App\Entity\Recipe;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 class RecipeType extends AbstractType
 {
@@ -16,17 +19,25 @@ class RecipeType extends AbstractType
             ->add('title')
             ->add('slug')
             ->add('content')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
             ->add('duration')
             ->add('save', SubmitType::class, [
-                'label' => 'Modifier'
+                'label' => 'Modifier',
+                'attr' => [
+                    'class' => 'bg-teal-500 text-white p-2 rounded hover:bg-teal-800',
+                ],
             ])
+            ->addEventListener(FormEvents::PRE_SUBMIT, $this->buildForm(...))
         ;
+    }
+
+    public function autoSlug(PreSubmitEvent $event): void
+    {
+        $data = $event->getData();
+        if (empty($data['slug'])) {
+            $slugger = new AsciiSlugger();
+            $data['slug'] = strtolower($slugger->slug($data['title']));
+            $event->setData($data);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void

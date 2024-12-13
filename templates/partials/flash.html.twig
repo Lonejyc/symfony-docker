@@ -1,0 +1,6 @@
+{% for type, messages in app.flashes  %}
+    {% set color = type == 'error' ? 'red' : 'green' %}
+    <div class="bg-{{ color }}-200 dark:bg-{{ color }}-700 text-{{ color }}-800 dark:text-{{ color }}-200 border border-{{ color }}-300 dark:border-{{ color }}-800 rounded-lg p-3 my-3">
+        {{ messages | join('. ') }}
+    </div>
+{% endfor %}
