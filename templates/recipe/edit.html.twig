@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Recette : " ~ recipe.title %}
+
+{% block body %}
+    <h1 class="text-3xl dark:text-gray-200 mb-3">{{ recipe.title }}</h1>
+
+    {{ form_start(formContent) }}
+        {{ form_row(formContent.title) }}
+        {{ form_row(formContent.slug) }}
+        {{ form_row(formContent.content) }}
+        <div class="flex w-full gap-2">
+            {{ form_row(formContent.createdAt) }}
+            {{ form_row(formContent.updatedAt) }}
+        </div>
+        {{ form_row(formContent.duration) }}
+    {{ form_end(formContent) }}
+{% endblock %}
