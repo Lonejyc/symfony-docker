@@ -13,7 +13,8 @@
         <thead class="bg-teal-500 dark:bg-gray-700">
             <tr class="dark:text-white text-xl">
                 <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Titre</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Actions</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Catégorie</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider w-1">Actions</th>
             </tr>
         </thead>
         <tbody class="bg-teal-50 divide-y divide-teal-200 dark:bg-gray-500 dark:divide-gray-900">
@@ -22,7 +23,10 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                     <a href="{{ path('recipe.show', {id: recipe.id(), slug: recipe.slug()}) }}" class="text-blue-500 dark:text-blue-100 underline">{{ recipe.title() }}</a>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap flex gap-2">
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <p class="dark:text-white">{{ recipe.category.name | default('') }}</p>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap flex gap-2 justify-end">
                     <a href="{{ path('recipe.edit', {id: recipe.id()}) }}" class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">Éditer</a>
                     <form action="{{ path('recipe.delete', {id: recipe.id()}) }}" method="post">
                         <input type="hidden" name="_method" value="DELETE">

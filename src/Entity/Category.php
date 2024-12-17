@@ -28,7 +28,7 @@ class Category
     /**
      * @var Collection<int, Recipe>
      */
-    #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'category')]
+    #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'category', cascade: ['remove'])]
     private Collection $recipes;
 
     #[ORM\Column(length: 255)]

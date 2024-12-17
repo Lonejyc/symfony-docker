@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Recipe;
 use App\Form\RecipeType;
+use App\Repository\CategoryRepository;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +16,6 @@ class RecipeController extends AbstractController {
     #[Route('/recettes', name: 'recipe.index')]
     public function index(Request $request, RecipeRepository $repository): Response
     {
-
         $recipes = $repository->findWithDurationLowerThan(30);
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes
