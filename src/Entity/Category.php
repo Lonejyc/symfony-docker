@@ -3,11 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use App\Validator\BanWord;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[UniqueEntity('name')]
+#[UniqueEntity('slug')]
 class Category
 {
     #[ORM\Id]
@@ -16,13 +21,20 @@ class Category
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    #[Assert\Length(min: 3)]
+    #[BanWord(groups: ['Extra'])]
+    private string $name = '';
 
     /**
      * @var Collection<int, Recipe>
      */
     #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'category')]
     private Collection $recipes;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 3)]
+    #[Assert\Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', message: 'Slug Invalide', groups: ['Extra'])]
+    private ?string $slug = null;
 
     public function __construct()
     {
@@ -34,7 +46,7 @@ class Category
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -72,6 +84,18 @@ class Category
                 $recipe->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

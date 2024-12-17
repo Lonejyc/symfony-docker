@@ -16,6 +16,7 @@
         <nav class="flex gap-3 bg-teal-500 dark:bg-gray-700 p-3 items-center" aria-label="Tabs">
             <a href="{{ path('home') }}" class="text-white text-xl shrink-0 rounded-lg p-2 font-medium hover:bg-teal-100 dark:hover:bg-gray-200 hover:text-gray-800 {{ app.current_route == 'home' ? 'underline' : '' }}">Accueil</a>
             <a href="{{ path('recipe.index') }}" class="shrink-0 rounded-lg p-2 font-small text-gray-200 hover:bg-teal-100 dark:hover:bg-gray-200 hover:text-gray-800 {{ app.current_route starts with 'recipe.' ? 'underline' : '' }}">Recettes</a>
+            <a href="{{ path('category.index') }}" class="shrink-0 rounded-lg p-2 font-small text-gray-200 hover:bg-teal-100 dark:hover:bg-gray-200 hover:text-gray-800 {{ app.current_route starts with 'category.' ? 'underline' : '' }}">Catégories</a>
         </nav>
         <div class="m-8">
             {% include 'partials/flash.html.twig' %}

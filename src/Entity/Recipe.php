@@ -20,17 +20,17 @@ class Recipe
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min: 5)]
+    #[Assert\Length(min: 3)]
     #[BanWord(groups: ['Extra'])]
     private string $title = '';
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min: 5)]
+    #[Assert\Length(min: 3)]
     #[Assert\Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', message: 'Slug Invalide', groups: ['Extra'])]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\Length(min: 5)]
+    #[Assert\Length(min: 3)]
     private string $content = '';
 
     #[ORM\Column]
