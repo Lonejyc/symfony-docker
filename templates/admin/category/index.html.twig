@@ -1,13 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin.html.twig' %}
 
 {% block title "Toutes les catégories" %}
 
 {% block body %}
-    <p class="dark:text-white">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aut autem dolorem eveniet ex iure libero neque nostrum odio odit, omnis provident sapiente sit tempora tempore, ut vel voluptate voluptatem?
-    </p>
     <p class="my-5">
-        <a href="{{ path('category.create') }}" class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">Créer une catégorie</a>
+        <a href="{{ path('admin.category.create') }}" class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">Créer une catégorie</a>
     </p>
     <table class="min-w-full divide-y divide-teal-200 mt-4 dark:divide-gray-900">
         <thead class="bg-teal-500 dark:bg-gray-700">
@@ -20,11 +17,11 @@
         {% for category in categories %}
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <a href="{{ path('category.show', {id: category.id(), slug: category.slug()}) }}" class="text-blue-500 dark:text-blue-100 underline">{{ category.name() }}</a>
+                    <a href="{{ path('admin.category.edit', {id: category.id()}) }}" class="text-blue-500 dark:text-blue-100 underline">{{ category.name() }}</a>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap flex gap-2 justify-end">
-                    <a href="{{ path('category.edit', {id: category.id()}) }}" class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">Éditer</a>
-                    <form action="{{ path('category.delete', {id: category.id()}) }}" method="post">
+                    <a href="{{ path('admin.category.edit', {id: category.id()}) }}" class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">Éditer</a>
+                    <form action="{{ path('admin.category.delete', {id: category.id()}) }}" method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" class="text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-rose-600 dark:hover:bg-rose-700 focus:outline-none dark:focus:ring-rose-800">Supprimer</button>
                     </form>

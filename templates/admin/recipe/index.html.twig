@@ -1,13 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin.html.twig' %}
 
 {% block title "Toutes les recettes" %}
 
 {% block body %}
-    <p class="dark:text-white">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aut autem dolorem eveniet ex iure libero neque nostrum odio odit, omnis provident sapiente sit tempora tempore, ut vel voluptate voluptatem?
-    </p>
     <p class="my-5">
-        <a href="{{ path('recipe.create') }}" class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">Créer une recette</a>
+        <a href="{{ path('admin.recipe.create') }}" class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">Créer une recette</a>
     </p>
     <table class="min-w-full divide-y divide-teal-200 mt-4 dark:divide-gray-900">
         <thead class="bg-teal-500 dark:bg-gray-700">
@@ -21,14 +18,14 @@
             {% for recipe in recipes %}
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <a href="{{ path('recipe.show', {id: recipe.id(), slug: recipe.slug()}) }}" class="text-blue-500 dark:text-blue-100 underline">{{ recipe.title() }}</a>
+                    <a href="{{ path('admin.recipe.edit', {id: recipe.id()}) }}" class="text-blue-500 dark:text-blue-100 underline">{{ recipe.title() }}</a>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <p class="dark:text-white">{{ recipe.category.name | default('') }}</p>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap flex gap-2 justify-end">
-                    <a href="{{ path('recipe.edit', {id: recipe.id()}) }}" class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">Éditer</a>
-                    <form action="{{ path('recipe.delete', {id: recipe.id()}) }}" method="post">
+                    <a href="{{ path('admin.recipe.edit', {id: recipe.id()}) }}" class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">Éditer</a>
+                    <form action="{{ path('admin.recipe.delete', {id: recipe.id()}) }}" method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" class="text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-rose-600 dark:hover:bg-rose-700 focus:outline-none dark:focus:ring-rose-800">Supprimer</button>
                     </form>

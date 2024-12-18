@@ -1,9 +1,0 @@
-{% extends 'base.html.twig' %}
-
-{% block title "Recette : " ~ recipe.title %}
-
-{% block body %}
-    <h1 class="text-3xl dark:text-gray-200 mb-3">{{ recipe.title }}</h1>
-
-    <p class="dark:text-gray-200">{{ recipe.content | nl2br }}</p>
-{% endblock %}
