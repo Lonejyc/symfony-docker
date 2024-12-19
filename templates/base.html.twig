@@ -17,7 +17,10 @@
             <div class="flex gap-3 items-center">
                 <a href="{{ path('home') }}" class="text-white text-xl shrink-0 rounded-lg p-2 font-medium hover:bg-teal-100 dark:hover:bg-gray-200 hover:text-gray-800 {{ app.current_route == 'home' ? 'underline' : '' }}">Accueil</a>
             </div>
-            <a href="{{ path('admin.recipe.index') }}" class="shrink-0 flex justify-end bg-teal-500 text-white p-2 rounded hover:bg-teal-800">Login</a>
+            <div class="flex gap-3 items-center">
+                <a href="{{ path('app_register') }}" class="text-white shrink-0 rounded-lg p-2 font-medium hover:bg-teal-100 dark:hover:bg-gray-200 hover:text-gray-800">Sign In</a>
+                <a href="{{ path('admin.recipe.index') }}" class="shrink-0 flex justify-end bg-teal-500 text-white p-2 rounded-lg hover:bg-teal-800">Login</a>
+            </div>
         </nav>
         <div class="m-10">
             {% include 'partials/flash.html.twig' %}
