@@ -17,10 +17,10 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted('ROLE_USER')]
 class RecipeController extends AbstractController {
     #[Route('/', name: 'index')]
-    public function index(RecipeRepository $repository): Response
+    public function index(RecipeRepository $repository, Request $request): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
-        $recipes = $repository->findWithDurationLowerThan(30);
+        $page = $request->query->getInt('page', 1);
+        $recipes = $repository->paginateRecipes($page);
         return $this->render('admin/recipe/index.html.twig', [
             'recipes' => $recipes
         ]);
