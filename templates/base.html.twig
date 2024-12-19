@@ -13,10 +13,11 @@
         {% endblock %}
     </head>
     <body class="bg-teal-100 dark:bg-gray-900">
-        <nav class="flex gap-3 bg-teal-500 dark:bg-gray-700 p-3 items-center" aria-label="Tabs">
-            <a href="{{ path('home') }}" class="text-white text-xl shrink-0 rounded-lg p-2 font-medium hover:bg-teal-100 dark:hover:bg-gray-200 hover:text-gray-800 {{ app.current_route == 'home' ? 'underline' : '' }}">Accueil</a>
-            <a href="{{ path('recipe.index') }}" class="shrink-0 rounded-lg p-2 font-small text-gray-200 hover:bg-teal-100 dark:hover:bg-gray-200 hover:text-gray-800 {{ app.current_route starts with 'recipe.' ? 'underline' : '' }}">Recettes</a>
-            <a href="{{ path('category.index') }}" class="shrink-0 rounded-lg p-2 font-small text-gray-200 hover:bg-teal-100 dark:hover:bg-gray-200 hover:text-gray-800 {{ app.current_route starts with 'category.' ? 'underline' : '' }}">Catégories</a>
+        <nav class="flex justify-between bg-teal-500 dark:bg-gray-700 p-3 items-center" aria-label="Tabs">
+            <div class="flex gap-3 items-center">
+                <a href="{{ path('home') }}" class="text-white text-xl shrink-0 rounded-lg p-2 font-medium hover:bg-teal-100 dark:hover:bg-gray-200 hover:text-gray-800 {{ app.current_route == 'home' ? 'underline' : '' }}">Accueil</a>
+            </div>
+            <a href="{{ path('admin.recipe.index') }}" class="shrink-0 flex justify-end bg-teal-500 text-white p-2 rounded hover:bg-teal-800">Login</a>
         </nav>
         <div class="m-10">
             {% include 'partials/flash.html.twig' %}
